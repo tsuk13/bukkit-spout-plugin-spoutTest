@@ -4,9 +4,12 @@ import java.text.MessageFormat;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.getspout.spoutapi.SpoutManager;
+import org.getspout.spoutapi.player.SpoutPlayer;
 
 /*
  * This is a sample event listener
@@ -27,9 +30,12 @@ public class SpoutItemTutorialListener implements Listener {
     /*
      * Send the sample message to all players that join
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage(this.plugin.getConfig().getString("sample.message"));
+        SpoutPlayer player = SpoutManager.getPlayer(event.getPlayer());
+        player.setSkin("http://www.minecraftskins.com/newuploaded_skins/skin_20121115095227188033.png");
+        
     }
     
     /*
